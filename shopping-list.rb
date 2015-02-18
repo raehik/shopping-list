@@ -13,6 +13,12 @@ class ShoppingList
     @list = File.new(@filename, "r").read.split(/\n/)
   end
 
+  def show
+    for line in @list
+      puts "  [ ] " + line
+    end
+  end
+
   def write
     file = File.new(@filename, "w")
     for line in @list
@@ -36,9 +42,9 @@ class ShoppingList
 end
 
 opts = Trollop::options do
-  opt :file, "File to use as list", :short => "f"
-  opt :print, "Print the list after any other operations", :short => "p"
-  opt :clear, "Clear the list", :short => "c"
+  opt :file, "File to use as list", short: "f"
+  opt :print, "Print the list after any other operations", short: "p"
+  opt :clear, "Clear the list", short: "c"
 end
 
 if opts[:file]
@@ -60,7 +66,7 @@ ARGV.each do |arg|
 end
 
 # print finished list
-puts list.list.join(", ")
+list.show
 
 if opts[:print]
   list.print
