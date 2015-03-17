@@ -15,7 +15,7 @@ class ShoppingList
 
   def show
     for line in @list
-      puts "  [ ] " + line
+      puts line
     end
   end
 
@@ -27,7 +27,7 @@ class ShoppingList
   end
 
   def add(item)
-    @list << item
+    @list << "  [ ]  " + item
     write
   end
 
@@ -37,7 +37,7 @@ class ShoppingList
   end
 
   def print
-    `lp #{@filename}`
+    `enscript -f @16 "#{@filename}"`
   end
 end
 
